@@ -1,0 +1,59 @@
+ul#gallery_list {
+
+  list-style: none;
+  padding: 0;
+  margin: -20px 0 0 -10px;
+
+  li {
+    float: left;
+    > div {
+      position: relative;
+      margin-bottom: 10px;
+      margin-top: 20px;
+
+      .name {
+
+        /*background-color: rgba(103, 102, 102, 0.5);*/
+        /*color: rgba(255, 255, 255, 0.8);*/
+
+        background-color: rgba(255,255,255, 0.6);
+        color: rgba(0,0,0, 0.8);
+
+        width: 256px;
+        height: 40px;
+        line-height: 40px;
+        text-transform: uppercase;
+
+        position: absolute;
+        bottom: 1px;
+        left: 16px;
+        z-index: 100;
+
+        font-size: 16px;
+        text-align: center;
+        font-family: "HelveticaRegular", Arial, Helvetica, sans-serif;
+
+        /*padding-top: 6px;*/
+        /*padding-left: 20px;*/
+
+        -webkit-transition: all .2s ease-out;
+        -moz-transition: all .2s ease-out;
+        -ms-transition: all .2s ease-out;
+        -o-transition: all .2s ease-out;
+        transition: all .2s ease-out;
+
+      }
+    }
+    img {
+      border: 1px solid black;
+    }
+  }
+
+}
+
+.plusOpacity {
+  .name {
+    background-color: rgba(103, 102, 102, 1.0) !important;
+    color: rgba(255, 255, 255, 1.0) !important;
+  }
+}

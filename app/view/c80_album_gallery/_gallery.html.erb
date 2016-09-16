@@ -1,0 +1,13 @@
+
+<%
+   k = (12/perrow.to_i).to_int
+   klass = "col-md-#{k} col-sm-#{k} col-xs-#{k}"
+%>
+
+<div id="gallery_<%=gtag%>" class="gallery col-md-12 col-xs-12 col-sm-12">
+  <% gallery.gphotos.each do |ph| %>
+      <div class="<%= klass %>">
+        <%= link_to image_tag(ph.image.thumb512, :alt => gallery.title), image_path(ph.image), :title => gallery.title, :class => "link_image" %>
+      </div>
+  <% end %>
+</div>
