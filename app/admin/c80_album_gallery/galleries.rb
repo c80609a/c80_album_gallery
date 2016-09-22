@@ -38,7 +38,7 @@ ActiveAdmin.register C80AlbumGallery::Gallery, :as => 'Gallery' do
   form(:html => {:multipart => true}) do |f|
     f.inputs "Галерея" do
       f.input :title
-      f.input :tag
+      # f.input :tag
 
       f.inputs "Фотографии" do
         f.has_many :gphotos, :allow_destroy => true do |gp|
