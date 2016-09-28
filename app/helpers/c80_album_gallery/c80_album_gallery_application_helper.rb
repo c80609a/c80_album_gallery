@@ -30,5 +30,36 @@ module C80AlbumGallery
 
     end
 
+    # выдать список обложек галерей, снабжённых title, при клике ведущих на просмотр галери
+    #   1. Под список фиксируется count позиций: если галереи для какой-то позиции не нашлось - будет выведена серая болванка (которая будет как бы намекать "дружок, тут должно быть что-то согласно макету, загрузи недостающие элементы")
+    #   2. Галереи берутся в порядке def_order, затем случайным образом перемешиваются, затем уже вставляются во VIEW.
+    #   3. С помощью css_klass можно регулировать количество элементов в ряду.
+    #   4. С помощью css_list_klass можно кастомизировать внеший вид списка.
+    def render_gallery_list_slots(count=3, css_list_klass='style_1', css_item_klass='col-lg-4 col-md-4 col-sm-6 col-xs-6')
+
+      # извлечём нужное количество альбомов (нужно помнить, что нужного количества может и не набраться)
+      galleries = Gallery.all.def_order.limit(count).order('rand()')
+
+      # предварительно подготовим список к рендеру
+      list = []
+      count.times do |i|
+        gallery = galleries[i]
+        if gallery.present?
+          list << gallery
+        else
+          list << Gallery.new({ title: "Слот #{i}", tag: "slot_#{i}" })
+        end
+      end
+
+      render :partial => 'c80_album_gallery/flow_galleries_slots',
+             :locals => {
+                 list: list,
+                 count: count,
+                 css_list_klass: css_list_klass,
+                 css_item_klass: css_item_klass
+             }
+
+    end
+
   end
 end

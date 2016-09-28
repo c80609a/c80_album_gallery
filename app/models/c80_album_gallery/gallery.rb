@@ -6,6 +6,9 @@ module C80AlbumGallery
                                     !attributes.present?
                                   },
                                   :allow_destroy => true
+
+    scope :def_order, -> {order(:created_at => :desc)}
+
   end
 
 end

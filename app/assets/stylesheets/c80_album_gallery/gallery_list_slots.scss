@@ -1,0 +1,43 @@
+div.gallery_list_slots {
+
+  .slot_item {
+    padding: 0;
+
+    div.photo {
+
+      a {
+
+        img {
+          max-width: 100%;
+        }
+
+        /* если картинка не загрузилась - она не будет показана */
+        &.nil_img {
+
+          background-color: #f7f7f7 !important;
+
+          img {
+            display: none;
+          }
+
+        }
+
+      }
+
+    }
+
+    div.title {
+
+      a {
+        text-decoration: none;
+        color: black;
+        &:hover { color: #111111; text-decoration: none; }
+        &:focus { color: #202020; }
+        &:active { color: #2b2b2b; }
+      }
+
+    }
+
+  }
+
+}
