@@ -6,6 +6,7 @@ module C80AlbumGallery
       "#{root_url}portfolio/#{gallery.id}"
     end
 
+    # выдать список обложек галерей, снабжённых title, при клике ведущих на просмотр галери
     def render_gallery_list
 
       v = Gallery.all
@@ -17,6 +18,7 @@ module C80AlbumGallery
 
     end
 
+    # отрендерить "внутренности" галереи: т.е. открыть на просмотр фото
     def render_view_gallery_page(gallery,perrow=3)
 
       render :partial => 'c80_album_gallery/gallery',
