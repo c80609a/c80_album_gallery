@@ -7,22 +7,71 @@ module C80AlbumGallery
     end
 
     # ограничение оригинальной картинки
-    process :resize_to_limit => [1024,768]
+    process :resize_to_limit => [1600,1600]
 
-    version :thumb512 do
-      process :resize_to_fill => [512,384]
+    version :thumb_lg do
+      process :resize_to_lg
     end
 
-    version :thumb256 do
-      process :resize_to_fill => [256,192]
+    version :thumb_md do
+      process :resize_to_md
     end
 
-    version :thumb320 do
-      process :resize_to_fill => [320,200]
+    version :thumb_sm do
+      process :resize_to_sm
     end
 
-    version :thumb640 do
-      process :resize_to_fill => [640,400]
+# ------------------------------------------------------------------------------------------------------------------------
+
+    def resize_to_lg
+
+      manipulate! do |img|
+
+        w = C80AlbumGallery::Prop.first.thumb_lg_width
+        h = C80AlbumGallery::Prop.first.thumb_lg_height
+
+        img.resize "#{w}x#{h}^"
+        img.gravity 'center'
+        img.extent "#{w}x#{h}"
+        img = yield(img) if block_given?
+        img
+
+      end
+  
+    end
+
+    def resize_to_md
+
+      manipulate! do |img|
+
+        w = C80AlbumGallery::Prop.first.thumb_md_width
+        h = C80AlbumGallery::Prop.first.thumb_md_height
+
+        img.resize "#{w}x#{h}^"
+        img.gravity 'center'
+        img.extent "#{w}x#{h}"
+        img = yield(img) if block_given?
+        img
+
+      end
+
+    end
+
+    def resize_to_sm
+
+      manipulate! do |img|
+
+        w = C80AlbumGallery::Prop.first.thumb_sm_width
+        h = C80AlbumGallery::Prop.first.thumb_sm_height
+
+        img.resize "#{w}x#{h}^"
+        img.gravity 'center'
+        img.extent "#{w}x#{h}"
+        img = yield(img) if block_given?
+        img
+
+      end
+
     end
 
   end

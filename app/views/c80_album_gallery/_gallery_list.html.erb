@@ -9,15 +9,17 @@
       <% url = my_url_for_gallery(gallery) %>
 
       <div class="slot_item <%= css_item_klass %> n_<%= i %>">
-        <div class="photo">
+        <div class="photo" style="<%= "#{w_style};#{h_style}" %>">
           <%= render_image_link_lazy({
                                              :alt_image => title,
                                              :image => image,
                                              :a_href => url,
-                                             :a_class => a_klass
+                                             :a_class => a_klass,
+                                             :a_css_style => "#{w_style};#{h_style}",
+                                             :a_rel => 'nofollow'
                                      }) %>
         </div>
-        <div class="title">
+        <div class="title" style="<%= "#{w_style}" %>">
           <%= link_to title, url, :title => title %>
         </div>
       </div>

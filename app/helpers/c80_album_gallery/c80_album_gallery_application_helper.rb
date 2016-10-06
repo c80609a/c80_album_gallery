@@ -39,7 +39,7 @@ module C80AlbumGallery
     def render_gallery_list_slots(count=3,
                                   css_list_klass='style_1',
                                   css_item_klass='col-lg-4 col-md-4 col-sm-6 col-xs-6',
-                                  thumb_size='thumb256')
+                                  thumb_size='thumb_md')
 
       # извлечём нужное количество альбомов (нужно помнить, что нужного количества может и не набраться)
       galleries = Gallery.all.def_order.limit(count).order('rand()')
@@ -73,16 +73,24 @@ module C80AlbumGallery
     #   5. С помощью thumb_size можно регулировать размер картинки
     def render_gallery_list(      css_list_klass='style_1',
                                   css_item_klass='col-lg-4 col-md-4 col-sm-6 col-xs-6',
-                                  thumb_size='thumb256')
+                                  thumb_size='thumb_md')
 
       galleries_list = Gallery.all.def_order
+
+      w = C80AlbumGallery::Prop.first.send("#{thumb_size}_width")
+      h = C80AlbumGallery::Prop.first.send("#{thumb_size}_height")
+      w_style = "width:#{w}px"
+      h_style = "height:#{h}px"
+      # wh_style = "#{w_style};#{h_style}"
 
       render :partial => 'c80_album_gallery/gallery_list',
              :locals => {
                  list: galleries_list,
                  css_list_klass: css_list_klass,
                  css_item_klass: css_item_klass,
-                 thumb_size: thumb_size
+                 thumb_size: thumb_size,
+                 w_style: w_style,
+                 h_style: h_style
              }
 
     end

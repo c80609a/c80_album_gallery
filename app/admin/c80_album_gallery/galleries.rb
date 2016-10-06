@@ -26,7 +26,7 @@ ActiveAdmin.register C80AlbumGallery::Gallery, :as => 'Gallery' do
     column "" do |gallery|
       arr = []
       gallery.gphotos.limit(2).each do |gp|
-        arr << image_tag(gp.image.thumb256, :style => "margin-left:5px")
+        arr << image_tag(gp.image.thumb_md, :style => "margin-left:5px")
       end
       arr << "<br>Всего фотографий: #{gallery.gphotos.count}"
       arr.join("").html_safe
@@ -44,7 +44,7 @@ ActiveAdmin.register C80AlbumGallery::Gallery, :as => 'Gallery' do
         f.has_many :gphotos, :allow_destroy => true do |gp|
           gp.input :image,
                    :as => :file,
-                   :hint => gp.template.image_tag(gp.object.image.thumb256)
+                   :hint => gp.template.image_tag(gp.object.image.thumb_md)
         end
       end
 
