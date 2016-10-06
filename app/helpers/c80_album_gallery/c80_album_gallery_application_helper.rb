@@ -19,13 +19,39 @@ module C80AlbumGallery
     end
 
     # отрендерить "внутренности" галереи: т.е. открыть на просмотр фото
-    def render_view_gallery_page(gallery,perrow=3)
+    def render_view_gallery_page_old(gallery,perrow=3)
 
       render :partial => 'c80_album_gallery/gallery',
              :locals => {
                  :gallery => gallery,
                  :perrow => perrow,
                  :gtag => gallery.id
+             }
+
+    end
+
+    def render_view_gallery_page(gallery,
+                                 css_list_klass='style_1',
+                                 css_item_klass='col-lg-4 col-md-4 col-sm-6 col-xs-6',
+                                 thumb_size='thumb_md')
+
+      list = gallery.gphotos
+
+      w = C80AlbumGallery::Prop.first.send("#{thumb_size}_width")
+      h = C80AlbumGallery::Prop.first.send("#{thumb_size}_height")
+      w_style = "width:#{w}px"
+      h_style = "height:#{h}px"
+      # wh_style = "#{w_style};#{h_style}"
+
+      render :partial => 'c80_album_gallery/gallery_view_page',
+             :locals => {
+                 list: list,
+                 css_list_klass: css_list_klass,
+                 css_item_klass: css_item_klass,
+                 thumb_size: thumb_size,
+                 w_style: w_style,
+                 h_style: h_style,
+                 gallery_title: gallery.title
              }
 
     end
