@@ -35,7 +35,10 @@ module C80AlbumGallery
     #   2. Галереи берутся в порядке def_order, затем случайным образом перемешиваются, затем уже вставляются во VIEW.
     #   3. С помощью css_klass можно регулировать количество элементов в ряду.
     #   4. С помощью css_list_klass можно кастомизировать внеший вид списка.
-    def render_gallery_list_slots(count=3, css_list_klass='style_1', css_item_klass='col-lg-4 col-md-4 col-sm-6 col-xs-6')
+    def render_gallery_list_slots(count=3,
+                                  css_list_klass='style_1',
+                                  css_item_klass='col-lg-4 col-md-4 col-sm-6 col-xs-6',
+                                  thumb_size='thumb256')
 
       # извлечём нужное количество альбомов (нужно помнить, что нужного количества может и не набраться)
       galleries = Gallery.all.def_order.limit(count).order('rand()')
@@ -56,7 +59,8 @@ module C80AlbumGallery
                  list: list,
                  count: count,
                  css_list_klass: css_list_klass,
-                 css_item_klass: css_item_klass
+                 css_item_klass: css_item_klass,
+                 thumb_size: thumb_size
              }
 
     end

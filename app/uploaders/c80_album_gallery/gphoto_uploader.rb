@@ -17,6 +17,14 @@ module C80AlbumGallery
       process :resize_to_fill => [256,192]
     end
 
+    version :thumb320 do
+      process :resize_to_fill => [320,200]
+    end
+
+    version :thumb640 do
+      process :resize_to_fill => [640,400]
+    end
+
   end
 
 end
