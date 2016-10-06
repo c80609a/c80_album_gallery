@@ -1,0 +1,26 @@
+<div class="gallery_list <%= css_list_klass %> clearfix">
+
+  <% list.each_with_index do |gallery,i| %>
+      <% title = gallery.title %>
+      <% image = nil %>
+      <% a_klass = 'nil_img' %>
+      <% image = gallery.gphotos.first.image.send(thumb_size) if gallery.gphotos.count > 0 %>
+      <% a_klass = '' if gallery.gphotos.count > 0 %>
+      <% url = my_url_for_gallery(gallery) %>
+
+      <div class="slot_item <%= css_item_klass %> n_<%= i %>">
+        <div class="photo">
+          <%= render_image_link_lazy({
+                                             :alt_image => title,
+                                             :image => image,
+                                             :a_href => url,
+                                             :a_class => a_klass
+                                     }) %>
+        </div>
+        <div class="title">
+          <%= link_to title, url, :title => title %>
+        </div>
+      </div>
+  <% end %>
+
+</div>
