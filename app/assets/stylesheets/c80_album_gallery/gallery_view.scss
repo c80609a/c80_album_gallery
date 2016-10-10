@@ -1,0 +1,20 @@
+.gallery_view {
+
+  padding: 0;
+  margin-left: -15px;
+  width: calc(100% + 15px);
+
+  > div {
+    margin-bottom: 25px;
+
+    a {
+
+      img {
+        max-width: 100%;
+      }
+
+    }
+
+  }
+
+}

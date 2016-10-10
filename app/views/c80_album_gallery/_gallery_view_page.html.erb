@@ -1,0 +1,23 @@
+<div class="gallery_list <%= css_list_klass %> clearfix">
+
+  <% list.each_with_index do |gphoto,i| %>
+      <% image = gphoto.image.send(thumb_size) %>
+      <% a_klass = '' %>
+      <% url = gphoto.image.url %>
+
+      <div class="slot_item <%= css_item_klass %> n_<%= i %>">
+        <div class="photo" style="<%= "#{w_style};#{h_style}" %>">
+          <%= render_image_link_lazy({
+                                             :alt_image => gallery_title,
+                                             :image => image,
+                                             :a_href => url,
+                                             :a_class => a_klass,
+                                             :a_css_style => "#{w_style};#{h_style}",
+                                             :a_rel => 'nofollow'
+                                     }) %>
+        </div>
+
+      </div>
+  <% end %>
+
+</div>
