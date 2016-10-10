@@ -6,4 +6,8 @@ div.gallery_list {
     @include style_photostudio;
   }
 
+  &.style_photostudio_widget {
+    @include style_photostudio_widget;
+  }
+
 }

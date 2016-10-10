@@ -1,0 +1,37 @@
+$minus_left_right_margin: -5px;  // отрицательные отступы слева и справа
+$top_margin: 20px;               // отступ сверху
+$bottom_margin: 25px;             // отступ снизу
+
+@mixin style_photostudio_widget {
+
+  padding: 0;
+  margin: $top_margin $minus_left_right_margin $bottom_margin $minus_left_right_margin;
+
+  .slot_item {
+    margin-bottom: 8px;
+    float: left;
+    margin-right: 15px;
+
+    @extend %slot_item_overlayed;
+
+    div.photo {
+      margin-bottom: 5px;
+
+      > a {
+
+        > img {
+
+        }
+
+      }
+
+    }
+
+    div.title {
+      /*margin-bottom: 20px;*/
+      margin-left: 0 !important;
+    }
+
+  }
+
+}
