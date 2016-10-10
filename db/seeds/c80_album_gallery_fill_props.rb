@@ -9,6 +9,16 @@ C80AlbumGallery::Prop.create!({
                                   thumb_md_height: 200,
 
                                   thumb_sm_width: 80,
-                                  thumb_sm_height: 50
+                                  thumb_sm_height: 50,
+
+                                  thumb_preview_width: 250,
+                                  thumb_preview_height: 164
 
                               })
+
+=begin
+p = C80AlbumGallery::Prop.first
+p.thumb_preview_width = 250
+p.thumb_preview_height = 164
+p.save!
+=end

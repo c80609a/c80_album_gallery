@@ -2,4 +2,8 @@ div.gallery_list {
 
   @extend %gallery_list_default;
 
+  &.style_photostudio {
+    @include style_photostudio;
+  }
+
 }
