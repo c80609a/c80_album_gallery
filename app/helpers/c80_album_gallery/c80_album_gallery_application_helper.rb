@@ -97,9 +97,16 @@ module C80AlbumGallery
     #   3. С помощью css_klass можно регулировать количество элементов в ряду.
     #   4. С помощью css_list_klass можно кастомизировать внеший вид списка.
     #   5. С помощью thumb_size можно регулировать размер картинки
+    #   6. С помощью is_grayscaled можно получить список из чб картинок.
     def render_gallery_list(      css_list_klass='style_1',
                                   css_item_klass='col-lg-4 col-md-4 col-sm-6 col-xs-6',
-                                  thumb_size='thumb_md')
+                                  thumb_size='thumb_md',
+                                  is_grayscaled=false)
+
+      partial_name = 'c80_album_gallery/gallery_list'
+      if is_grayscaled
+        partial_name = 'c80_album_gallery/gallery_list_grayscaled'
+      end
 
       galleries_list = Gallery.all.def_order
 
@@ -109,7 +116,7 @@ module C80AlbumGallery
       h_style = "height:#{h}px"
       # wh_style = "#{w_style};#{h_style}"
 
-      render :partial => 'c80_album_gallery/gallery_list',
+      render :partial => partial_name,
              :locals => {
                  list: galleries_list,
                  css_list_klass: css_list_klass,

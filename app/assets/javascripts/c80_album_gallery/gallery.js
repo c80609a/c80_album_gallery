@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    var $butts = $("ul#gallery_list").find("a");
+    /*var $butts = $("ul#gallery_list").find("a");
 
     $butts.bind({
         mouseenter: function() {
@@ -9,5 +9,5 @@ $(document).ready(function () {
         mouseleave: function() {
             $(this).removeClass("plusOpacity");
         }
-    })
+    })*/
 });

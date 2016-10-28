@@ -1,0 +1,50 @@
+div.gallery_list_grayscaled {
+
+  @extend %gallery_list_default;
+
+  &.style_photostudio {
+    @include style_photostudio;
+  }
+
+  &.style_photostudio_widget {
+    @include style_photostudio_widget;
+  }
+
+  .slot_item {
+
+    div.photo {
+
+      a {
+        position: absolute;
+
+        &.color {
+          z-index: 0;
+        }
+
+        &.gray {
+          z-index: 1;
+          background-image: none !important;
+
+          &:hover {
+            img {
+              opacity: 0;
+            }
+          }
+
+          &.my_fade {
+            img {
+              -webkit-transition: opacity 0.45s linear;
+              -o-transition: opacity 0.45s linear;
+              transition: opacity 0.45s linear;
+            }
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+}
