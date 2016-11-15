@@ -62,10 +62,16 @@ module C80AlbumGallery
     #   3. С помощью css_klass можно регулировать количество элементов в ряду.
     #   4. С помощью css_list_klass можно кастомизировать внеший вид списка.
     #   5. С помощью thumb_size можно регулировать размер картинки
-    def render_gallery_list_slots(count=3,
-                                  css_list_klass='style_1',
-                                  css_item_klass='col-lg-4 col-md-4 col-sm-6 col-xs-6',
-                                  thumb_size='thumb_md')
+    def render_gallery_list_slots(count=nil,
+                                  css_list_klass=nil,
+                                  css_item_klass=nil,
+                                  thumb_size=nil,
+                                  section_title=nil)
+
+      count = count.present? ? count : 3
+      css_list_klass = css_list_klass.present? ? css_list_klass : ''
+      css_item_klass = css_item_klass.present? ? css_item_klass : 'col-lg-4 col-md-4 col-sm-6 col-xs-6'
+      thumb_size = thumb_size.present? ? thumb_size : 'thumb_md'
 
       # извлечём нужное количество альбомов (нужно помнить, что нужного количества может и не набраться)
       galleries = Gallery.all.def_order.limit(count).order('rand()')
@@ -87,7 +93,8 @@ module C80AlbumGallery
                  count: count,
                  css_list_klass: css_list_klass,
                  css_item_klass: css_item_klass,
-                 thumb_size: thumb_size
+                 thumb_size: thumb_size,
+                 section_title: section_title
              }
 
     end
@@ -101,7 +108,8 @@ module C80AlbumGallery
     def render_gallery_list(      css_list_klass='style_1',
                                   css_item_klass='col-lg-4 col-md-4 col-sm-6 col-xs-6',
                                   thumb_size='thumb_md',
-                                  is_grayscaled=false)
+                                  is_grayscaled=false,
+                                  section_title=nil)
 
       partial_name = 'c80_album_gallery/gallery_list'
       if is_grayscaled
@@ -123,7 +131,8 @@ module C80AlbumGallery
                  css_item_klass: css_item_klass,
                  thumb_size: thumb_size,
                  w_style: w_style,
-                 h_style: h_style
+                 h_style: h_style,
+                 section_title: section_title
              }
 
     end
