@@ -1,5 +1,9 @@
 <div class="gallery_list <%= css_list_klass %> clearfix">
 
+  <% if section_title.present? %>
+      <h3 class="section_title h3_for_gallery_list"><%= section_title %></h3>
+  <% end %>  
+  
   <% list.each_with_index do |gallery,i| %>
       <% title = gallery.title %>
       <% image = nil %>
