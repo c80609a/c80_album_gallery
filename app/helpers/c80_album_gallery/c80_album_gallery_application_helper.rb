@@ -1,4 +1,5 @@
 module C80AlbumGallery
+  # noinspection ALL
   module C80AlbumGalleryApplicationHelper
 
     # TODO:: негибко: а что делать, если мне нужен иной путь в host приложеии, не portfolio?
@@ -100,12 +101,17 @@ module C80AlbumGallery
     end
 
     # выдать список обложек галерей, снабжённых title, при клике ведущих на просмотр галереи
-    #   2. Галереи берутся в порядке def_order
-    #   3. С помощью css_klass можно регулировать количество элементов в ряду.
-    #   4. С помощью css_list_klass можно кастомизировать внеший вид списка.
-    #   5. С помощью thumb_size можно регулировать размер картинки
-    #   6. С помощью is_grayscaled можно получить список из чб картинок.
-    def render_gallery_list(      css_list_klass='style_1',
+    #   1. count          можно задать кол-во галерей (иначе - выведутся все)
+    #   2.                Галереи берутся в порядке def_order
+    #   3. css_klass      можно регулировать количество элементов в ряду.
+    #   4. css_list_klass можно кастомизировать внеший вид списка.
+    #   5. thumb_size     можно регулировать размер картинки
+    #   6. is_grayscaled  можно получить список из чб картинок.
+    #   7. section_title  заголовок блока (находися внутри блока) (используется только в gallery_list.html.erb)
+    #
+    #   NOTE:: аргумент count появился в версии 0.1.0.4
+    def render_gallery_list(      count=nil,
+                                  css_list_klass='style_1',
                                   css_item_klass='col-lg-4 col-md-4 col-sm-6 col-xs-6',
                                   thumb_size='thumb_md',
                                   is_grayscaled=false,
@@ -116,7 +122,12 @@ module C80AlbumGallery
         partial_name = 'c80_album_gallery/gallery_list_grayscaled'
       end
 
-      galleries_list = Gallery.all.def_order
+      # если не указано кол-во галерей - значит выводим все
+      if count.nil?
+        galleries_list = Gallery.all.def_order
+      else
+        galleries_list = Gallery.all.def_order.limit(count)
+      end
 
       w = C80AlbumGallery::Prop.first.send("#{thumb_size}_width")
       h = C80AlbumGallery::Prop.first.send("#{thumb_size}_height")
